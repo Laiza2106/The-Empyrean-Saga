@@ -23,7 +23,7 @@ fkUsuario int,
 create table Curtidas(
 idCurtidas int primary key auto_increment,
 Likes int,
-Deslikes int,
+	constraint chkLikes check(Likes in(0, 1)),
 fkUsuarioLike int, 
 	constraint fkUsuarioCurtidas foreign key (fkUsuarioLike)
 			references Usuario(idUsuario),
@@ -52,10 +52,14 @@ insert into Usuario (Nome, Email, Telefone, Senha, Confirmar_Senha) values
 ('Laiza', 'laizatavares@gmail.com', '11993473590', 'Lol@2502', 'Lol@2502'),
 ('Geovanna', 'geovanna@gmail.com', '1125674896', '@Ge19', '@Ge19');
 
+select * from Usuario;
+
 insert into Livro (Nome, dtLancamento) values
 ('Quarta Asa', '2023-10-24'),
 ('Chama de Ferro', '2024-03-19'),
 ('Tempestade de Ônix', '2025-01-22');
+
+select * from Livro;
 
 insert into Avaliacao (Nota, descricao, fkUsuario) values
 (5, 'Perfeito!', 1),
@@ -63,6 +67,20 @@ insert into Avaliacao (Nota, descricao, fkUsuario) values
 (5, 'Não vou Superar', 2),
 (5, 'Sem palavras', 2);
 
-insert into Curtidas (Likes, Deslikes, fkUsuarioLike, fkAvaliacao) values
+select * from Avaliacao;
+
+insert into Curtidas (Likes, fkUsuarioLike, fkAvaliacao) values
+('1', '1', '1'),
+('0', '2', '4');
+
+select * from Curtidas;
+
+insert into Registro (fkLivro, fkAvaliacao_Livro) values
+(1, 1),
+(2, 1),
+(1, 2),
+(2, 2);
+
+select * from Registro;
 
 	
