@@ -52,14 +52,10 @@ insert into Usuario (Nome, Email, Telefone, Senha, Confirmar_Senha) values
 ('Laiza', 'laizatavares@gmail.com', '11993473590', 'Lol@2502', 'Lol@2502'),
 ('Geovanna', 'geovanna@gmail.com', '1125674896', '@Ge19', '@Ge19');
 
-select * from Usuario;
-
 insert into Livro (Nome, dtLancamento) values
 ('Quarta Asa', '2023-10-24'),
 ('Chama de Ferro', '2024-03-19'),
 ('Tempestade de Ônix', '2025-01-22');
-
-select * from Livro;
 
 insert into Avaliacao (Nota, descricao, fkUsuario) values
 (5, 'Perfeito!', 1),
@@ -67,20 +63,102 @@ insert into Avaliacao (Nota, descricao, fkUsuario) values
 (5, 'Não vou Superar', 2),
 (5, 'Sem palavras', 2);
 
-select * from Avaliacao;
-
 insert into Curtidas (Likes, fkUsuarioLike, fkAvaliacao) values
 ('1', '1', '1'),
 ('0', '2', '4');
 
-select * from Curtidas;
-
 insert into Registro (fkLivro, fkAvaliacao_Livro) values
 (1, 1),
-(2, 1),
-(1, 2),
-(2, 2);
+(2, 2),
+(1, 3),
+(2, 4);
 
+select * from Usuario;
+select * from Avaliacao;
+select * from Curtidas;
+select * from Livro;
 select * from Registro;
+
+select Usuario.Nome as 'Usuário', Usuario.Email as 'E-mail do Usuário',
+Livro.Nome as 'Nome do Livro', Avaliacao.Nota as 'Avaliação do Livro',
+Avaliacao.Descricao as 'Comentário da Leitura'
+from Usuario 
+join Avaliacao
+on Usuario.idUsuario = Avaliacao.fkUsuario
+join Registro
+on Avaliacao.idAvaliacao = Registro.fkAvaliacao_Livro
+join Livro
+on Livro.idLivro = Registro.fkLivro;
+
+select Usuario.Nome as 'Usuário', Livro.Nome as 'Nome do Livro', 
+Avaliacao.Descricao as 'Comentário da Leitura',
+Curtidas.Likes as 'Quantidade de Likes'
+from Usuario
+join Avaliacao
+on Usuario.idUsuario = Avaliacao.fkUsuario
+join Registro
+on Avaliacao.idAvaliacao = Registro.fkAvaliacao_Livro
+join Livro
+on Livro.idLivro = Registro.fkLivro
+join Curtidas
+on Curtidas.fkAvaliacao = Avaliacao.idAvaliacao;
+
+select Usuario.Nome as 'Usuário', Usuario.Email as 'E-mail do Usuário',
+Livro.Nome as 'Nome do Livro', Avaliacao.Nota as 'Avaliação do Livro',
+Avaliacao.Descricao as 'Comentário da Leitura'
+from Usuario 
+join Avaliacao
+on Usuario.idUsuario = Avaliacao.fkUsuario
+join Registro
+on Avaliacao.idAvaliacao = Registro.fkAvaliacao_Livro
+join Livro
+on Livro.idLivro = Registro.fkLivro
+where Usuario.idUsuario = 1;
+
+select Usuario.Nome as 'Usuário', Usuario.Email as 'E-mail do Usuário',
+Livro.Nome as 'Nome do Livro', Avaliacao.Nota as 'Avaliação do Livro',
+Avaliacao.Descricao as 'Comentário da Leitura'
+from Usuario 
+join Avaliacao
+on Usuario.idUsuario = Avaliacao.fkUsuario
+join Registro
+on Avaliacao.idAvaliacao = Registro.fkAvaliacao_Livro
+join Livro
+on Livro.idLivro = Registro.fkLivro
+where Usuario.idUsuario = 2;
+
+select Usuario.Nome as 'Usuário', Livro.Nome as 'Nome do Livro', 
+Avaliacao.Descricao as 'Comentário da Leitura',
+Curtidas.Likes as 'Quantidade de Likes'
+from Usuario
+join Avaliacao
+on Usuario.idUsuario = Avaliacao.fkUsuario
+join Registro
+on Avaliacao.idAvaliacao = Registro.fkAvaliacao_Livro
+join Livro
+on Livro.idLivro = Registro.fkLivro
+join Curtidas
+on Curtidas.fkAvaliacao = Avaliacao.idAvaliacao
+where Usuario.idUsuario = 1;
+
+select Usuario.Nome as 'Usuário', Livro.Nome as 'Nome do Livro', 
+Avaliacao.Descricao as 'Comentário da Leitura',
+Curtidas.Likes as 'Quantidade de Likes'
+from Usuario
+join Avaliacao
+on Usuario.idUsuario = Avaliacao.fkUsuario
+join Registro
+on Avaliacao.idAvaliacao = Registro.fkAvaliacao_Livro
+join Livro
+on Livro.idLivro = Registro.fkLivro
+join Curtidas
+on Curtidas.fkAvaliacao = Avaliacao.idAvaliacao
+where Usuario.idUsuario = 2;
+
+insert into Usuario (Nome, Email, Telefone, Senha, Confirmar_Senha) values
+('Amanda', 'amanda@gmail.com', 11945678765, 'Amanda123', 'Amanda123');
+
+
+
 
 	
