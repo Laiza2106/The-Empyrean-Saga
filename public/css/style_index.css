@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Playwrite+DE+Grund:wght@100..400&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inknut Antiqua', sans-serif;;
+}
+
+.container{
+    background-image: url(../assets/imgs/Home_video.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 650px;
+    background-position:center;
+}
+
+.fundo{
+    background-color: rgba(0,0,0, 0.5);
+    height: 650px;
+    margin-top: 0;
+    padding: 0;
+}
+
+.logotext{
+    color: rgb(228, 228, 29);
+    font-size: 20px;
+}
+
+.titulo{
+    color: rgb(228, 228, 29);
+    align-self: center;
+}
+
+.titulo-container {
+    display: flex;
+    height: 400px;
+    justify-content: center;
+    font-size: 30px;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-right: 5px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+a:hover{
+    color: rgb(228, 228, 29);
+}
+
+.autora{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloautora{
+    align-self: center;
+}
+
+.foto{
+    border-radius: 30px;
+    width: 400px;
+}
+
+.fototext{
+    display:flex;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+.autora-texto{
+    padding-left: 10px;
+}

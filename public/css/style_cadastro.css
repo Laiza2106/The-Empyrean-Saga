@@ -1,0 +1,66 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Playwrite+DE+Grund:wght@100..400&display=swap');
+
+body{
+    background-image: url(../assets/imgs/cadastro_image.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+}
+
+.container{
+    border: 1px solid black;
+    font-family: 'Inknut Antiqua', sans-serif;
+    background-color: black;
+    opacity: 70%;
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    height: auto;
+    margin-top: 35px;
+    width: 30%;
+    height: auto;
+}
+
+.Cadastro{
+    font-size: 30px;
+}
+
+.campo{
+    font-size: 15px;
+}
+
+.container .campo input{
+    font-family: 'Inknut Antiqua', sans-serif;
+    height: 5vh;
+    width: 300px;
+    border-radius: 9px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    border: none;
+    padding: 0 1rem;
+}
+
+button{
+    width: 100px;
+    height: 5vh;
+    border-radius: 9px;
+    border: none;
+    font-size: 15px;
+    margin-top: 29px;
+    margin-bottom: 15px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    font-family: 'Inknut Antiqua', sans-serif;
+}
+
+a{
+    color: white;
+}
