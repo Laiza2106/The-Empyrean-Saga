@@ -1,0 +1,55 @@
+section.slider{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+}
+
+.slider-content{
+    width: 400%;
+    height: auto;
+    display: flex;
+}
+
+.slider-content input, .img_mobile{
+    display: none;
+}
+
+.slider_image{
+    width: 25%;
+    height: auto;
+    position: relative;
+    text-align: center;
+}
+
+.slider_image img{
+    width: 100%;
+}
+
+.nav_manual, .nav_auto{
+    position: absolute;
+    width: 100%;
+    margin-top: 35%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav_manual .manual1, .nav_auto div{
+    border: 1px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.nav_manual .manual1:not(:last-child), .nav_auto div:not(:last-child){
+    margin-right: 10px;
+}
+
+.nav_manual .manual1:hover{
+    background-color: black;
+}
+
+
+

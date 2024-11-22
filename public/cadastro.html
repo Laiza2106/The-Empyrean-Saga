@@ -1,54 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> The Empyrean Saga - Cadastro </title>
   <link rel="stylesheet" href="../public/css/style_cadastro.css">
 </head>
+
 <body>
 
-    <div class="corpo">
+  <div class="corpo">
 
-      <div class="container">
+    <div class="container">
 
-        <div class="Cadastro">
+      <div class="Cadastro">
         <span class="cadastro1"> Bem-vindo(a) </span>
-        </div>
-        
-      <div class="campo">
-        <span> Nome: </span> 
-        <input type="email" id="ipt_nome" placeholder="Nome completo"> 
       </div>
 
       <div class="campo">
-        <span> Email: </span> 
-        <input type="email" id="ipt_email" placeholder="usuario@gmail.com">  
+        <span> Nome: </span>
+        <input type="email" id="ipt_nome" placeholder="Nome completo">
       </div>
 
       <div class="campo">
-        <span> Telefone: </span>  
-        <input type="text" id="ipt_telefone" placeholder="Celular">  
+        <span> Email: </span>
+        <input type="email" id="ipt_email" placeholder="usuario@gmail.com">
       </div>
 
       <div class="campo">
-        <span> Senha: </span>  
-        <input type="password" id="ipt_senha" placeholder="Digite sua senha">  
+        <span> Telefone: </span>
+        <input type="text" id="ipt_telefone" placeholder="Celular">
       </div>
-  
-      <button class="botao_entra" onclick="logar()"> Criar Conta </button>
+
+      <div class="campo">
+        <span> Senha: </span>
+        <input type="password" id="ipt_senha" placeholder="Digite sua senha">
+      </div>
+
+      <button class="botao_entra" onclick="cadastrar()"> Criar Conta </button>
       <div class="links">
 
         <a> Possui conta?</a>
         <a class="entrar" href="login.html"> Entrar </a>
-        
-        
+
+
       </div>
     </div>
-    </div>
-  
+  </div>
+
 </body>
+
 </html>
 <script>
-  // t1 = ligou, t2 = não ligou, t3 = ligou, t4 = ligou, t5 = não ligou, t6 = ligou, t7 = não ligou, t8 = ligou
+
+  function cadastrar() {
+
+    // verificar se todos os campos estao preenchidos
+    var nomeVar = ipt_nome.value;
+    var emailVar = ipt_email.value;
+    var telefVar = ipt_telefone.value;
+    var senhaVar = ipt_senha.value;
+
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      telefVar == "" ||
+      senhaVar == ""
+    ) {
+      //mensagemErroCadastro.innerHTML = "Revise seu cadastro! Há campos em branco.";
+      alert("aaaa")
+      return false;
+    }
+
+    // enviando os dados para o servidor
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        telefoneServer: telefVar,
+        senhaServer: senhaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          mensagemErroCadastro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+            hidecadastro();
+          }, 2000);
+
+          limparFormulario();
+        } else {
+          resposta.text().then(function (texto) {
+            mensagemErroCadastro.innerHTML = texto;
+          });
+        }
+      })
+      .catch(function (erro) {
+        console.log(`#ERRO: ${ erro }`);
+      });
+  }
+
 </script>
