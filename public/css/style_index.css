@@ -22,12 +22,12 @@ body{
 }
 
 .logotext{
-    color: rgb(228, 228, 29);
+    color: gold;
     font-size: 20px;
 }
 
 .titulo{
-    color: rgb(228, 228, 29);
+    color: gold;
     align-self: center;
 }
 
@@ -69,7 +69,7 @@ a{
 }
 
 a:hover{
-    color: rgb(228, 228, 29);
+    color: gold;
 }
 
 .autora{
@@ -97,5 +97,74 @@ a:hover{
 
 .autora-texto{
     padding-left: 10px;
+}
+
+.livrosinopse1{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.livrosinopse2{
+    background-color: black;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.livrosinopse3{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulolivro{
+    align-self: center;
+}
+
+.livro1{
+    margin-left: -80px;
+    width: 600px;
+}
+
+.livro2{
+    margin-left: -80px;
+    width: 550px;
+}
+
+.livro3{
+    margin-left: -80px;
+    width: 550px;
+}
+
+.livrotext{
+    display:flex;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+.sinopse{
+    padding-left: 10px;
+}
+
+.footer{
+    background-color: black;
+    color: white;
+    height: 100px;
+
+}
+
+h4{
+    display: flex;
+    justify-content: center;
+}
+
+.container1{
+    display: flex;
+    align-items: center;
 }
 

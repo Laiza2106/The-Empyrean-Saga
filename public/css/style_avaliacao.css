@@ -1,15 +1,60 @@
-.container{
-    display: flex;
-    height: 400px;
-    justify-content: center;
-    font-size: 30px;
-    margin-top: 280px;
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Playwrite+DE+Grund:wght@100..400&display=swap');
 
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inknut Antiqua', sans-serif;;
 }
 
-.avaliar{
-    width: 200px;
-    height: 80px;
-    border-radius: 50px;
-    align-self: center;
+.avaliacao{
+  display: flex;
+  justify-items: center;
+}
+
+.avaliacao img{
+  margin-bottom: 40px;
+}
+
+.avaliacao .campo input{
+    height: 20vh;
+    width: 300px;
+    border-color: black;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    padding: 0 1rem;
+    font-family: 'Inknut Antiqua', sans-serif;
+    font-size: 13px;
+    margin-top: 0;
+}
+.avaliacao{
+  display: flex;
+  margin-left: 40px ;
+  margin-bottom: 0;
+}
+
+.star-icon{
+  list-style-type: none;
+  border: 1px solid #fff;
+  cursor: pointer;
+  color: #ffe500;
+  font: 2em sans-serif;
+  margin-left: 2px;
+}
+
+.star-icon::before{
+  content: "\2605"; /*cheio*/
+}
+
+.star-icon.ativo ~ .star-icon::before{
+  content: "\2606"; /*vazio*/
+}
+
+.avaliacao:hover .star-icon::before{
+  content: "\2605"; /*cheio*/
+}
+
+.star-icon:hover ~ .star-icon::before{
+  content: "\2606"; /*vazio*/
 }

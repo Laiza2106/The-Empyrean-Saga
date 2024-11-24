@@ -3,13 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../public/css/style_avaliacao.css">
+    <title> The Empyrean Saga - Avaliação </title>
 </head>
 <body>
 
-    <div class="avaliacaodesc">
-        <img src="../assets/imgs/Livro quarta asa - nota.jpg" width="400px">
+    <div class="avaliacao">
+        <img src="../public/assets/imgs/Livro quarta asa - nota.jpg" width="400px">
+        <div class="campo">
+            <ul class="avaliacao">
+                <li class="star-icon ativo" data-avaliacao="1"></li>
+                <li class="star-icon" data-avaliacao="2"></li>
+                <li class="star-icon" data-avaliacao="3"></li>
+                <li class="star-icon" data-avaliacao="4"></li>
+                <li class="star-icon" data-avaliacao="5"></li>
+            </ul>
+        <span> Comentário: </span>  
+        <input type="text" id="ipt_comentario"> 
+        </div>
+    </div>
+
+    <div class="avaliacao">
+        <img src="../public/assets/imgs/Livro chama de ferro - nota.jpg" width="400px">
+        <div class="campo">
+            <ul class="avaliacao">
+                <li class="star-icon ativo" data-avaliacao="1"></li>
+                <li class="star-icon" data-avaliacao="2"></li>
+                <li class="star-icon" data-avaliacao="3"></li>
+                <li class="star-icon" data-avaliacao="4"></li>
+                <li class="star-icon" data-avaliacao="5"></li>
+            </ul>
+            <span> Comentário: </span>  
+            <input type="text" id="ipt_comentario"> 
+        </div>
+    </div>
+
+    <div class="avaliacao">
+        <img src="../public/assets/imgs/Livro tempestade de onix - nota.jpg" width="400px">
+        <div class="campo">
+            <ul class="avaliacao">
+                <li class="star-icon ativo" data-avaliacao="1"></li>
+                <li class="star-icon" data-avaliacao="2"></li>
+                <li class="star-icon" data-avaliacao="3"></li>
+                <li class="star-icon" data-avaliacao="4"></li>
+                <li class="star-icon" data-avaliacao="5"></li>
+            </ul>
+            <span> Comentário: </span>  
+            <input type="text" id="ipt_comentario"> 
+        </div>
     </div>
     
 </body>
 </html>
+<script>
+
+    var stars = document.querySelectorAll('.star-icon');
+    document.addEventListener('click', function(e){
+        var classStar = e.target.classList;
+        if(!classStar.contains('ativo')){
+            stars.forEach(function(star){
+                star.classList.remove('ativo');
+            })
+            classStar.add('ativo');
+        }
+    });
+
+</script>
