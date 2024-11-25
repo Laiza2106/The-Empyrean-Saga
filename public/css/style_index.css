@@ -104,6 +104,9 @@ a:hover{
     color: white;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .livrosinopse2{
@@ -112,6 +115,9 @@ a:hover{
     color: white;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .livrosinopse3{
@@ -119,6 +125,9 @@ a:hover{
     color: white;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .titulolivro{
@@ -142,13 +151,16 @@ a:hover{
 
 .livrotext{
     display:flex;
+    flex-direction: column;
     padding: 20px;
-    text-align: center;
+    text-align: justify;
     align-items: center;
+    width: 80%;
 }
 
 .sinopse{
     padding-left: 10px;
+    text-align: justify;
 }
 
 .footer{

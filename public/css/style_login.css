@@ -44,6 +44,14 @@ body{
     font-size: 13px;
 }
 
+label, textarea {
+    display: block;
+  }
+  
+  textarea {
+    margin: 15px 0;
+  }
+
 button {
     width: 90px;
     height: 4vh;

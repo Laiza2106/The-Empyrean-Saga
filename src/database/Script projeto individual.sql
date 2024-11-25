@@ -1,4 +1,4 @@
-create database The_Empyrean;
+create database The_Empyrean; 
 use The_Empyrean;
 
 create table Usuario(
@@ -6,8 +6,7 @@ idUsuario int primary key auto_increment,
 Nome varchar(45),
 Email varchar(45),
 Telefone char(11),
-Senha varchar(45),
-Confirmar_Senha varchar(45)
+Senha varchar(45)
 );
 
 create table Avaliacao(
@@ -18,18 +17,6 @@ Descricao varchar(500),
 fkUsuario int,
 	constraint fkUsuarioAvaliacao foreign key (fkUsuario)
 			references Usuario(idUsuario)
-);
-
-create table Curtidas(
-idCurtidas int primary key auto_increment,
-Likes int,
-	constraint chkLikes check(Likes in(0, 1)),
-fkUsuarioLike int, 
-	constraint fkUsuarioCurtidas foreign key (fkUsuarioLike)
-			references Usuario(idUsuario),
-fkAvaliacao int,
-	constraint fkAvaliacaoCurtidas foreign key (fkAvaliacao)
-			references Avaliacao(idAvaliacao)
 );
 
 create table Livro(
@@ -48,10 +35,10 @@ fkAvaliacao_Livro int,
 			references Avaliacao(idAvaliacao)
 );
 
-insert into Usuario (Nome, Email, Telefone, Senha, Confirmar_Senha) values
-('Laiza', 'laizatavares@gmail.com', '11993473590', 'Lol@2502', 'Lol@2502'),
-('Geovanna', 'geovanna@gmail.com', '1125674896', '@Ge19', '@Ge19'),
-('Amanda', 'amanda@gmail.com', 11945678765, 'Amanda123', 'Amanda123');
+insert into Usuario (Nome, Email, Telefone, Senha) values
+('Laiza', 'laizatavares@gmail.com', '11993473590', 'Lol@2502'),
+('Geovanna', 'geovanna@gmail.com', '1125674896', '@Ge19'),
+('Amanda', 'amanda@gmail.com', 11945678765, 'Amanda123');
 
 insert into Livro (Nome, dtLancamento) values
 ('Quarta Asa', '2023-10-24'),
@@ -66,11 +53,11 @@ insert into Avaliacao (Nota, descricao, fkUsuario) values
 (5, 'Simplesmente incrível', 3),
 (5, 'Estou surtando!!!', 3);
 
-insert into Curtidas (Likes, fkUsuarioLike, fkAvaliacao) values
-('1', '1', '1'),
-('0', '2', '4'),
-('1', '3', '1'),
-('1', '3', '2');
+insert into Curtidas (fkUsuarioLike, fkAvaliacao) values
+('1', '1'),
+('2', '4'),
+('3', '1'),
+('3', '2');
 
 insert into Registro (fkLivro, fkAvaliacao_Livro) values
 (1, 1),

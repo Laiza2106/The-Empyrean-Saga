@@ -8,64 +8,94 @@
 </head>
 <body>
 
-    <div class="avaliacao">
-        <img src="./assets/imgs/Livro quarta asa - nota.jpg" width="400px">
+    <div class="container">
+
+    <div class="container2">
+    <div class="avaliacao" id="avaliacao1">
+        <img src="../public/assets/imgs/Livro quarta asa - nota.jpg" width="400px">
+
         <div class="campo">
-            <ul class="avaliacao">
+            <ul class="avaliacao" id="stars1">
                 <li class="star-icon ativo" data-avaliacao="1"></li>
                 <li class="star-icon" data-avaliacao="2"></li>
                 <li class="star-icon" data-avaliacao="3"></li>
                 <li class="star-icon" data-avaliacao="4"></li>
                 <li class="star-icon" data-avaliacao="5"></li>
             </ul>
-        <span> Comentário: </span>  
-        <input type="text" id="ipt_comentario"> 
+            
+                <span class="descricao" > Comentário: </span> <br>
+                <textarea placeholder="Escreva seu comentário" rows=5 cols=25></textarea>
+            
         </div>
     </div>
 
-    <div class="avaliacao">
-        <img src="./assets/imgs/Livro chama de ferro - nota.jpg" width="400px">
+    <div class="avaliacao" id="avaliacao2">
+        <img src="../public/assets/imgs/Livro chama de ferro - nota.jpg" width="400px">
+
         <div class="campo">
-            <ul class="avaliacao">
+            <ul class="avaliacao" id="stars2">
                 <li class="star-icon ativo" data-avaliacao="1"></li>
                 <li class="star-icon" data-avaliacao="2"></li>
                 <li class="star-icon" data-avaliacao="3"></li>
                 <li class="star-icon" data-avaliacao="4"></li>
                 <li class="star-icon" data-avaliacao="5"></li>
             </ul>
-            <span> Comentário: </span>  
-            <input type="text" id="ipt_comentario"> 
+        
+                <span class="descricao" > Comentário: </span> <br> 
+                <textarea placeholder="Escreva seu comentário" rows=5 cols=25></textarea>
+    
         </div>
+
     </div>
 
-    <div class="avaliacao">
-        <img src="./assets/imgs/Livro tempestade de onix - nota.jpg" width="400px">
+    
+    <div class="avaliacao" id="avaliacao3">
+        <img src="../public/assets/imgs/Livro tempestade de onix - nota.jpg" width="400px">
         <div class="campo">
-            <ul class="avaliacao">
+            <ul class="avaliacao" id="stars3">
                 <li class="star-icon ativo" data-avaliacao="1"></li>
                 <li class="star-icon" data-avaliacao="2"></li>
                 <li class="star-icon" data-avaliacao="3"></li>
                 <li class="star-icon" data-avaliacao="4"></li>
                 <li class="star-icon" data-avaliacao="5"></li>
             </ul>
-            <span> Comentário: </span>  
-            <input type="text" id="ipt_comentario"> 
+            
+            <span class="descricao" > Comentário: </span>  
+            <div class="campo">
+                <textarea placeholder="Escreva seu comentário" rows=5 cols=25></textarea>
+            </div>
         </div>
     </div>
+</div>
+
+<div class="background">
+    <div class="botaoavaliar">
+            <button onclick="avaliar()">Avaliar Livros</button>
+        </div>
+</div>
+
+</div>
     
 </body>
 </html>
 <script>
 
-    var stars = document.querySelectorAll('.star-icon');
-    document.addEventListener('click', function(e){
-        var classStar = e.target.classList;
-        if(!classStar.contains('ativo')){
-            stars.forEach(function(star){
-                star.classList.remove('ativo');
+    const avaliacoes = document.querySelectorAll('.avaliacao');
+
+    for(var i = 0; i < avaliacoes.length; i++){
+        const stars = avaliacoes[i].querySelectorAll('.star-icon');
+
+        for(var a = 0; a < stars.length; a++){
+            stars[a].addEventListener('click', function(e){
+            const starsGroup = this.parentElement.querySelectorAll('.star-icon'); 
+            
+            for(var b = 0; b < starsGroup.length; b++){
+                starsGroup[b].classList.remove('ativo');
+            }
+            this.classList.add('ativo');
+            console.log(this.getAttribute('data-avaliacao'));
             })
-            classStar.add('ativo');
         }
-    });
+    }
 
 </script>
