@@ -30,7 +30,7 @@
     <div class="indicador">
       <div class="indicador3">
         <span> &#10148; Média das Avaliações </span> <br>
-        <span style="color:rgb(9, 7, 156)"; id="kpi1"></span>
+        <span style="color:rgb(9, 7, 156)"; id="kpi3"></span>
       </div>
     </div>
 
@@ -77,6 +77,7 @@
           const kpiData = data[0];
           document.getElementById('kpi1').innerText = kpiData.Total_Usuarios;
           document.getElementById('kpi2').innerText = kpiData.Livro_Mais_Avaliado;
+          document.getElementById('kpi3').innerText = kpiData.Media_Avaliacoes;
         }
       })
       .catch(error => {
