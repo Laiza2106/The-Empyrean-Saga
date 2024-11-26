@@ -25,7 +25,7 @@ body{
   width: 60%;
 }
 
-.avaliacao img{
+.avaliacaoI img{
   margin-bottom: 40px;
 }
 
@@ -71,7 +71,7 @@ textarea{
   content: "\2606"; /*vazio*/
 }
 
-.botaoavaliar a{
+.botaoavaliar button{
     width: 400px;
     height: 10vh;
     border-radius: 9px;

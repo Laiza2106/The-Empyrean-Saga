@@ -9,6 +9,10 @@ router.get("/kpis", function (req, res) {
 
 router.get("/grafico", function (req, res) {
     medidaController.buscargrafico(req, res);
-})
+});
+
+router.post("/estrela", function (req, res){
+    medidaController.buscarestrela(req, res);
+});
 
 module.exports = router;

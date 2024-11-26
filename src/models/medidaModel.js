@@ -5,11 +5,11 @@ function buscarkpis() {
     var instrucaoSql = `SELECT 
     (SELECT COUNT(*) FROM Usuario) AS Total_Usuarios,
     l.Nome AS Livro_Mais_Avaliado,
-    round(AVG(r.fkAvaliacao_Livro)) AS Media_Avaliacoes,
-    COUNT(r.fkLivro) AS Quantidade_Avaliacoes
+    ROUND(AVG(a.Nota), 2) AS Media_Avaliacoes,
+    COUNT(a.fkLivro) AS Quantidade_Avaliacoes
     FROM Livro as l
-    JOIN Registro as r 
-    ON l.idLivro = r.fkLivro
+    LEFT JOIN Avaliacao as a 
+    ON l.idLivro = a.fkLivro
     GROUP BY l.Nome
     ORDER BY Quantidade_Avaliacoes DESC
     LIMIT 1;`;
@@ -22,9 +22,10 @@ function buscargrafico() {
 
     var instrucaoSql = `SELECT 
     l.Nome AS Livro,
-    COUNT(r.fkLivro) AS Quantidade_Avaliacoes
+    COUNT(a.fkLivro) AS Quantidade_Avaliacoes
     FROM Livro as l
-    LEFT JOIN Registro as r ON l.idLivro = r.fkLivro
+    LEFT JOIN Avaliacao as a 
+    ON l.idLivro = a.fkLivro
     GROUP BY l.Nome
     ORDER BY Quantidade_Avaliacoes DESC;`;
 
@@ -32,7 +33,20 @@ function buscargrafico() {
     return database.executar(instrucaoSql);
 }
 
+function buscarestrela(nota, descricao, fkUsuario, fkLivro) {
+    console.log("INSERI NOTA NA AVALIACAO \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function avaliar():", nota, descricao, fkUsuario, fkLivro);
+
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `
+        INSERT INTO Avaliacao (Nota, Descricao, fkUsuario) VALUES ('${nota}', '${descricao}', ${fkUsuario}, ${fkLivro});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarkpis,
-    buscargrafico
+    buscargrafico,
+    buscarestrela
 }
