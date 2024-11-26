@@ -21,13 +21,6 @@
     </div>
 
     <div class="indicador">
-      <div class="indicador2">
-        <span> &#10148; Livro Mais Avaliado </span> <br>
-        <span style="color:rgb(9, 7, 156)"; id="kpi2"></span>
-      </div>
-    </div>
-
-    <div class="indicador">
       <div class="indicador3">
         <span> &#10148; Média das Avaliações </span> <br>
         <span style="color:rgb(9, 7, 156)"; id="kpi3"></span>
@@ -76,7 +69,7 @@
         if (data && data.length > 0) {
           const kpiData = data[0];
           document.getElementById('kpi1').innerText = kpiData.Total_Usuarios;
-          document.getElementById('kpi2').innerText = kpiData.Livro_Mais_Avaliado;
+          // document.getElementById('kpi2').innerText = kpiData.Livro_Mais_Avaliado;
           document.getElementById('kpi3').innerText = kpiData.Media_Avaliacoes;
         }
       })

@@ -4,7 +4,6 @@ function buscarkpis() {
 
     var instrucaoSql = `SELECT 
     (SELECT COUNT(*) FROM usuario) AS Total_Usuarios,
-    l.Nome AS Livro_Mais_Avaliado,
     ROUND(AVG(a.Nota), 2) AS Media_Avaliacoes,
     COUNT(a.fkLivro) AS Quantidade_Avaliacoes
     FROM livro as l
