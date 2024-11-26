@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> The Empyrean Saga - Graficos de Avaliação </title>
+  <link rel="stylesheet" href="./css/style_dash.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <div class="indicadores">
+
+    <div class="indicador">
+      <div class="indicador1">
+        <span> &#10148; Quantidade de Usuários Cadastrados </span> <br>
+        <span style="color:rgb(9, 7, 156)"; id="kpi1"></span>
+      </div>
+    </div>
+
+    <div class="indicador">
+      <div class="indicador2">
+        <span> &#10148; Livro Mais Avaliado </span> <br>
+        <span style="color:rgb(9, 7, 156)"; id="kpi2"></span>
+      </div>
+    </div>
+
+    <div class="indicador">
+      <div class="indicador3">
+        <span> &#10148; Média das Avaliações </span> <br>
+        <span style="color:rgb(9, 7, 156)"; id="kpi1"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <h1> Avaliações dos Livros </h1>
+
+  <div class="grafico">
+    <div class="image_dash">
+      <img src="./assets/imgs/imagem2_dash.png" width="300px">
+    </div>
+    <div class="dash">
+      <canvas id="myChart" width="389px" ; height: 400px;></canvas>
+    </div>
+    <div class="image_dash">
+      <img src="./assets/imgs/imagem_dash.png" width="300px">
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+<script>
+
+  // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+  window.onload = function () {
+    exibirLivrosGrafico();
+    exibirKPIs();
+  };
+
+  function exibirKPIs() {
+    fetch('/medidas/kpis')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error('Erro ao obter KPIs');
+        }
+      })
+      .then(data => {
+        if (data && data.length > 0) {
+          const kpiData = data[0];
+          document.getElementById('kpi1').innerText = kpiData.Total_Usuarios;
+          document.getElementById('kpi2').innerText = kpiData.Livro_Mais_Avaliado;
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao obter KPIs:', error);
+      });
+  }
+
+  function exibirLivrosGrafico() {
+    fetch('/medidas/grafico', { cache: 'no-store' })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error('Erro ao obter dados do gráfico');
+        }
+      })
+      .then(function (data) {
+        if (data && data.length > 0) {
+
+          // Processa os dados e plota o gráfico
+          var labels = [];
+          var values = [];
+
+          for (var i = 0; i < data.length; i++) {
+            labels.push(data[i].Livro);
+            values.push(data[i].Quantidade_Avaliacoes);
+          }
+
+          // Cria o gráfico com Chart.js
+          const ctx = document.getElementById('myChart').getContext('2d');
+          const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Quantidade de Avaliações',
+                data: values,
+                backgroundColor: [
+                  'rgb(0, 0, 0)',
+                  'rgb(0, 0, 255)',
+                  'rgb(255, 215, 0)',
+                ],
+                borderColor: [
+                  'rgb(0, 0, 0)',
+                  'rgb(0, 0, 255)',
+                  'rgb(255, 215, 0)',
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    precision: 0,
+                    color: '#FFFFFF'
+                  }
+                },
+                x: {
+                  ticks: {
+                    color: '#FFFFFF'
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+                  labels: {
+                    color: '#00000'
+                  }
+                }
+              }
+            }
+          })
+            .catch(error => {
+              console.error('Erro ao obter dados do gráfico:', error);
+            });
+        }
+      })
+  }
+
+</script>

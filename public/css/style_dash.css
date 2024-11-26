@@ -12,12 +12,23 @@ body{
 
 .indicador{
     border-radius: 20px;
-    width: 650px;
+    width: 400px;
     height: 150px;
     color: rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
     text-align: center;
     font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#kpi1{
+    font-size: 30px;
+}
+
+#kpi2{
+    font-size: 30px;
 }
 
 .grafico{
@@ -29,12 +40,21 @@ body{
 
 .dash{
     border-radius: 20px;
-    width: 50%;
+    width: 100%;
     height: 400px;
     color: rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
     text-align: center;
     font-size: 18px;
+    display: flex;
+    justify-content: center;
+}
+
+#myChart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 h1{
@@ -42,9 +62,3 @@ h1{
     display: flex;
     justify-content: center;
 }
-
-img{
-    
-}
-
-

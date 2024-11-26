@@ -6,8 +6,9 @@ function buscarkpis() {
     (SELECT COUNT(*) FROM Usuario) AS Total_Usuarios,
     l.Nome AS Livro_Mais_Avaliado,
     COUNT(r.fkLivro) AS Quantidade_Avaliacoes
-    FROM Livro l
-    JOIN Registro r ON l.idLivro = r.fkLivro
+    FROM Livro as l
+    JOIN Registro as r 
+    ON l.idLivro = r.fkLivro
     GROUP BY l.Nome
     ORDER BY Quantidade_Avaliacoes DESC
     LIMIT 1;`;
@@ -21,8 +22,8 @@ function buscargrafico() {
     var instrucaoSql = `SELECT 
     l.Nome AS Livro,
     COUNT(r.fkLivro) AS Quantidade_Avaliacoes
-    FROM Livro l
-    LEFT JOIN Registro r ON l.idLivro = r.fkLivro
+    FROM Livro as l
+    LEFT JOIN Registro as r ON l.idLivro = r.fkLivro
     GROUP BY l.Nome
     ORDER BY Quantidade_Avaliacoes DESC;`;
 

@@ -71,14 +71,16 @@ textarea{
   content: "\2606"; /*vazio*/
 }
 
-.botaoavaliar button{
+.botaoavaliar a{
     width: 400px;
     height: 10vh;
     border-radius: 9px;
     border: none;
+    background-color: white;
     font-size: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Inknut Antiqua', sans-serif;
+    text-decoration: none;
 }
