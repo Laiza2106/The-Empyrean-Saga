@@ -25,6 +25,18 @@ body{
   width: 60%;
 }
 
+#avaliacao1{
+  display: flex;
+}
+
+#avaliacao2{
+  display: flex;
+}
+
+#avaliacao3{
+  display: flex;
+}
+
 .avaliacaoI img{
   margin-bottom: 40px;
 }
@@ -83,4 +95,8 @@ textarea{
     justify-content: center;
     font-family: 'Inknut Antiqua', sans-serif;
     text-decoration: none;
+}
+
+.botaoavaliar button:hover{
+    color: #ffe500;
 }
