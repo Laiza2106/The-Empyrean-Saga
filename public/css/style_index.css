@@ -79,7 +79,18 @@ a:hover{
     flex-direction: column;
 }
 
+.eu{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
 .tituloautora{
+    align-self: center;
+}
+
+.tituloEu{
     align-self: center;
 }
 
@@ -96,6 +107,10 @@ a:hover{
 }
 
 .autora-texto{
+    padding-left: 10px;
+}
+
+.meu-texto{
     padding-left: 10px;
 }
 
@@ -166,17 +181,27 @@ a:hover{
 .footer{
     background-color: black;
     color: white;
-    height: 100px;
-
+    height: 200px;
 }
 
 h4{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .container1{
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.container2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
 }
 
