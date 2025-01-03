@@ -2,16 +2,20 @@ var database = require("../database/config");
 
 function buscarkpis() {
 
+    // O novo select para as KPI's da dashboard onde apresenta o valor em percentual dos livros com avaliações positivas e mostra o ranking do livro com mais avaliação positiva para o que menos tem 02/01/2025
+
     var instrucaoSql = `SELECT 
-    (SELECT COUNT(*) FROM usuario) AS Total_Usuarios,
-    ROUND(AVG(a.Nota), 2) AS Media_Avaliacoes,
-    COUNT(a.fkLivro) AS Quantidade_Avaliacoes
+    l.Nome as titulo_livro,
+    COUNT(a.idAvaliacao) as total_avaliacoes,
+    COUNT(CASE WHEN a.Nota >= 4 THEN 1 END) as avaliacoes_positivas,
+    CONCAT(ROUND((COUNT(CASE WHEN a.Nota >= 4 THEN 1 END) * 100.0) / COUNT(a.idAvaliacao), 2), '%') as percentual_positivas,
+    CONCAT(DENSE_RANK() OVER (ORDER BY COUNT(CASE WHEN a.Nota >= 4 THEN 1 END) DESC), '°') as ranking
     FROM livro as l
-    LEFT JOIN avaliacao as a 
+    LEFT JOIN avaliacao as a
     ON l.idLivro = a.fkLivro
-    GROUP BY l.Nome
-    ORDER BY Quantidade_Avaliacoes DESC
-    LIMIT 1;`;
+    GROUP BY l.Nome, l.idLivro
+    ORDER BY ranking
+    LIMIT 3;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

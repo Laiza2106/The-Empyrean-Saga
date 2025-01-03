@@ -15,14 +15,14 @@
 
     <div class="indicador">
       <div class="indicador1">
-        <span> &#10148; Quantidade de Usuários Cadastrados </span> <br>
+        <span> &#10148; Percentual de Notas Positivas </span> <br>
         <span style="color:rgb(9, 7, 156)"; id="kpi1"></span>
       </div>
     </div>
 
     <div class="indicador">
       <div class="indicador3">
-        <span> &#10148; Média das Avaliações </span> <br>
+        <span> &#10148; Ranking </span> <br>
         <span style="color:rgb(9, 7, 156)"; id="kpi3"></span>
       </div>
     </div>
@@ -68,9 +68,8 @@
       .then(data => {
         if (data && data.length > 0) {
           const kpiData = data[0];
-          document.getElementById('kpi1').innerText = kpiData.Total_Usuarios;
-          // document.getElementById('kpi2').innerText = kpiData.Livro_Mais_Avaliado;
-          document.getElementById('kpi3').innerText = kpiData.Media_Avaliacoes;
+          document.getElementById('kpi1').innerText = kpiData.percentual_positivas;
+          document.getElementById('kpi3').innerText = kpiData.ranking;
         }
       })
       .catch(error => {
