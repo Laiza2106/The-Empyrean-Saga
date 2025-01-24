@@ -56,26 +56,24 @@
     exibirKPIs();
   };
 
+// atualizada função de exibir dados da KPI para melhor desempenho dos resultados
+
   function exibirKPIs() {
-    fetch('/medidas/kpis')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.error('Erro ao obter KPIs');
-        }
-      })
-      .then(data => {
-        if (data && data.length > 0) {
-          const kpiData = data[0];
-          document.getElementById('kpi1').innerText = kpiData.percentual_positivas;
-          document.getElementById('kpi3').innerText = kpiData.ranking;
-        }
-      })
-      .catch(error => {
-        console.error('Erro ao obter KPIs:', error);
-      });
-  }
+  fetch('/medidas/kpis')
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.length > 0) {
+        document.getElementById('kpi1').innerText = data[0].Percentual_de_Avaliações_Positivas;
+        
+        // Obter os 3 primeiros colocados no ranking
+        const top3Ranking = data.slice(0, 3).map(item => item.Ranking).join(', ')
+        document.getElementById('kpi3').innerText = top3Ranking;
+      }
+    })
+    .catch(error => console.error('Erro ao obter KPIs:', error));
+}
+
+ // foi atualizada a função do gráfico de acordo com o novo select
 
   function exibirLivrosGrafico() {
     fetch('/medidas/grafico', { cache: 'no-store' })
@@ -94,8 +92,8 @@
           var values = [];
 
           for (var i = 0; i < data.length; i++) {
-            labels.push(data[i].Livro);
-            values.push(data[i].Quantidade_Avaliacoes);
+            labels.push(data[i].Avaliações_Positivas);
+            values.push(data[i].Avaliações_Negativas);
           }
 
           // Cria o gráfico com Chart.js
@@ -105,7 +103,7 @@
             data: {
               labels: labels,
               datasets: [{
-                label: 'Quantidade de Avaliações',
+                label: 'Avaliações_Positivas',
                 data: values,
                 backgroundColor: [
                   'rgb(0, 0, 0)',

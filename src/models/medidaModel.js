@@ -4,18 +4,20 @@ function buscarkpis() {
 
     // O novo select para as KPI's da dashboard onde apresenta o valor em percentual dos livros com avaliações positivas e mostra o ranking do livro com mais avaliação positiva para o que menos tem 02/01/2025
 
-    var instrucaoSql = `SELECT 
-    l.Nome as titulo_livro,
-    COUNT(a.idAvaliacao) as total_avaliacoes,
-    COUNT(CASE WHEN a.Nota >= 4 THEN 1 END) as avaliacoes_positivas,
-    CONCAT(ROUND((COUNT(CASE WHEN a.Nota >= 4 THEN 1 END) * 100.0) / COUNT(a.idAvaliacao), 2), '%') as percentual_positivas,
-    CONCAT(DENSE_RANK() OVER (ORDER BY COUNT(CASE WHEN a.Nota >= 4 THEN 1 END) DESC), '°') as ranking
-    FROM livro as l
-    LEFT JOIN avaliacao as a
-    ON l.idLivro = a.fkLivro
-    GROUP BY l.Nome, l.idLivro
-    ORDER BY ranking
-    LIMIT 3;`;
+    // foi atualizado novamente o select para melhor desempenho da KPI de Ranking, porém a chances de alterações futuramente 08/01
+
+    // O novo select funciona nomalmente para as KPI's porém o gráfico não aparece no site então este ultimo sera revisado
+
+    var instrucaoSql = `select L.idLivro, L.Nome as "Nome do Livro",
+    round((count(case when A.Nota >= 4 then 1 end) * 100.0) / count(A.idAvaliacao), 2) as "Percentual_de_Avaliações_Positivas",
+    concat(row_number() over (order by count(case when A.Nota >= 4 then 1 end) desc), '° ', L.Nome) as "Ranking",
+    count(case when A.Nota >= 4 then 1 end) as "Avaliações Positivas dos livros",
+    count(A.idAvaliacao) as "Total de Avaliações"
+    from livro as L
+    left join avaliacao as A
+    on L.idLivro = A.fkLivro
+    group by L.idLivro, L.Nome
+    order by "Avaliações Positivas dos livros" desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -23,14 +25,16 @@ function buscarkpis() {
 
 function buscargrafico() {
 
-    var instrucaoSql = `SELECT 
-    l.Nome AS Livro,
-    COUNT(a.fkLivro) AS Quantidade_Avaliacoes
-    FROM livro as l
-    LEFT JOIN avaliacao as a 
-    ON l.idLivro = a.fkLivro
-    GROUP BY l.Nome
-    ORDER BY Quantidade_Avaliacoes DESC;`;
+    var instrucaoSql = `select 
+    L.Nome as "Nome do Livro",
+    count(case when A.Nota >= 4 then 1 end) as "Avaliações_Positivas",
+    count(case when A.Nota < 4 then 1 end) as "Avaliações_Negativas",
+    count(A.idAvaliacao) as "Total de Avaliações"
+    from livro as L
+    left join avaliacao as A 
+    on L.idLivro = A.fkLivro
+    group by L.idLivro, L.Nome
+    order by "Total de Avaliações" desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
