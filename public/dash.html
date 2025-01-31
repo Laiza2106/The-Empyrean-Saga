@@ -29,7 +29,7 @@
 
   </div>
 
-  <h1> Avaliações dos Livros </h1>
+  <h1> Avaliações Totais vs. Avaliações Positivas por Livro </h1>
 
   <div class="grafico">
     <div class="image_dash">
@@ -74,79 +74,72 @@
 }
 
  // foi atualizada a função do gráfico de acordo com o novo select
+ // foi feita uma nova atualização para funcionamento da dashboard
 
-  function exibirLivrosGrafico() {
-    fetch('/medidas/grafico', { cache: 'no-store' })
-      .then(function (response) {
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.error('Erro ao obter dados do gráfico');
-        }
-      })
-      .then(function (data) {
-        if (data && data.length > 0) {
+ function exibirLivrosGrafico() {
+  fetch('/medidas/grafico', { cache: 'no-store' })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.error('Error getting chart data');
+      }
+    })
+    .then(data => {
+      if (data && data.length > 0) {
+        const labels = data.map(item => item.Livro);
+        const totalAvaliacoes = data.map(item => item.TotalAvaliacoes);
+        const avaliacoesPositivas = data.map(item => item.AvaliacoesPositivas);
 
-          // Processa os dados e plota o gráfico
-          var labels = [];
-          var values = [];
-
-          for (var i = 0; i < data.length; i++) {
-            labels.push(data[i].Avaliações_Positivas);
-            values.push(data[i].Avaliações_Negativas);
-          }
-
-          // Cria o gráfico com Chart.js
-          const ctx = document.getElementById('myChart').getContext('2d');
-          const myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Avaliações_Positivas',
-                data: values,
-                backgroundColor: [
-                  'rgb(0, 0, 0)',
-                  'rgb(0, 0, 255)',
-                  'rgb(255, 215, 0)',
-                ],
-                borderColor: [
-                  'rgb(0, 0, 0)',
-                  'rgb(0, 0, 255)',
-                  'rgb(255, 215, 0)',
-                ],
+        new Chart(document.getElementById('myChart'), {
+          type: 'doughnut',
+          data: {
+            labels: ['Quarta Asa', 'Chama de Ferro', 'Tempestade de Ônix'],
+            datasets: [
+              {
+                label: 'Total Avaliações',
+                data: totalAvaliacoes,
+                backgroundColor: ['#000000', '#000fff', '#ffd700'],
+                borderColor: ['#000000', '#000fff', '#ffd700'],
                 borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  ticks: {
-                    precision: 0,
-                    color: '#FFFFFF'
-                  }
-                },
-                x: {
-                  ticks: {
-                    color: '#FFFFFF'
-                  }
+              },
+              {
+                label: 'Avaliações Positivas',
+                data: avaliacoesPositivas,
+                backgroundColor: ['#d3d3d3', '#87cefa', '#ffce56'],
+                borderColor: ['#d3d3d3', '#87cefa', '#ffce56'],
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0,
+                  color: '#000000'
                 }
               },
-              plugins: {
-                legend: {
-                  labels: {
-                    color: '#00000'
-                  }
+              x: {
+                ticks: {
+                  color: '#000000'
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                labels: {
+                  color: '#000000'
                 }
               }
             }
-          })
-            .catch(error => {
-              console.error('Erro ao obter dados do gráfico:', error);
-            });
-        }
-      })
-  }
-
+          }
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Error getting chart data:', error);
+    });
+}
 </script>

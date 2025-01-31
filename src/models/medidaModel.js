@@ -25,16 +25,13 @@ function buscarkpis() {
 
 function buscargrafico() {
 
-    var instrucaoSql = `select 
-    L.Nome as "Nome do Livro",
-    count(case when A.Nota >= 4 then 1 end) as "Avaliações_Positivas",
-    count(case when A.Nota < 4 then 1 end) as "Avaliações_Negativas",
-    count(A.idAvaliacao) as "Total de Avaliações"
-    from livro as L
-    left join avaliacao as A 
-    on L.idLivro = A.fkLivro
-    group by L.idLivro, L.Nome
-    order by "Total de Avaliações" desc;`;
+    var instrucaoSql = `SELECT l.Nome AS livro,
+    COUNT(a.idAvaliacao) AS TotalAvaliacoes,
+    SUM(CASE WHEN a.Nota >= 4 THEN 1 ELSE 0 END) AS AvaliacoesPositivas
+    FROM livro as l
+    LEFT JOIN avaliacao as a 
+    ON l.idLivro = a.fkLivro
+    GROUP BY l.Nome;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
